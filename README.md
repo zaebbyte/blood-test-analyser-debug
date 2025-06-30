@@ -20,3 +20,68 @@ Bug #4: Invalid `async def` methods inside class
 
 Bug #5: Tools not returning correctly formatted strings
 **Fix**: Ensured all tool methods return cleaned and concatenated string data.
+
+
+# API DOUMENTAION
+BloodTestReportTool
+
+class BloodTestReportTool:
+    def read_data_tool(self, path: str = 'data/sample.pdf') -> str
+Description:
+Reads and cleans text from a blood test PDF file using LangChain's PDFLoader.
+
+Parameters:
+
+path (str): Path to the PDF file (default: 'data/sample.pdf')
+
+Returns:
+
+(str): Full cleaned text content extracted from the PDF
+
+NutritionTool
+
+class NutritionTool:
+    def analyze_nutrition_tool(self, blood_report_data: str) -> str
+Description:
+Processes blood report text and will analyze nutritional insights. Currently a placeholder with basic cleanup.
+
+Parameters:
+
+blood_report_data (str): Raw text content of the blood report
+
+Returns:
+
+(str): Nutrition analysis summary (mock output for now)
+
+ExerciseTool
+
+class ExerciseTool:
+    def create_exercise_plan_tool(self, blood_report_data: str) -> str
+Description:
+Plans an exercise routine based on blood report insights (placeholder logic).
+
+Parameters:
+
+blood_report_data (str): Raw text content of the blood report
+
+Returns:
+
+(str): Exercise plan suggestion (mock output for now)
+
+
+LLM
+
+from crewai import LLM
+
+llm = LLM(
+    model="gpt-4o-mini",  # or "gpt-4", "gpt-3.5-turbo", etc.
+    temperature=0.8
+)
+Description:
+Initializes the Large Language Model used by all CrewAI agents.
+
+Parameters:
+
+model (str): OpenAI model ID
+
+temperature (float): Creativity level (0 = deterministic, 1 = very creative)
